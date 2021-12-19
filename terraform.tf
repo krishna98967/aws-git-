@@ -5,12 +5,7 @@ provider "aws" {
 }
 
 
-resource "aws_vpc" "default" {
-    cidr_block = "${var.vpc_cidr}"
-    enable_dns_hostnames = true
-    tags = {
-        Name = "${var.vpc_name}"
-	Owner = "Sreeharsha Veerapalli"
-	environment = "${var.environment}"
-    }
-}
+resource "aws_subnet" "subnet1-public" {
+    vpc_id = "${aws_vpc.default.id}"
+    cidr_block = "${var.public_subnet1_cidr}"
+    availability_zone = "us-east-1a"
